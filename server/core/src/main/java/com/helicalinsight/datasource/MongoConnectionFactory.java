@@ -2,7 +2,6 @@ package com.helicalinsight.datasource;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import java.util.List;
 
 import com.helicalinsight.admin.model.HIHcrConnections;
@@ -67,13 +66,6 @@ public class MongoConnectionFactory extends DatabaseConnectionFactory {
 				driverClassName = connectionDetails.get("driverName").getAsString();
 			}
 
-			if ("mongodb.jdbc.MongoDriver".equalsIgnoreCase(driverClassName)) {
-				DriverConnection driverConnection = new DriverConnection();
-				driverConnection.setConnection(null);
-				driverConnection.setDriverClass("mongodb.jdbc.MongoDriver");
-				return driverConnection;
-
-			}
 			if (driverClassName != null && driverClassName.startsWith(JsonUtils.getHiMiddleWareName())) {
 				formJson.addProperty("id", "-1");
 				jsonInfo = formJson.toString();
